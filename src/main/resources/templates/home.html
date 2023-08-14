@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/home.css">
 </head>
 <body>
-    <h1>Hello World</h1>
-    <a th:href="@{/estoque}">Ir para o estoque</a>
-    <a th:href="@{/estoque/novo}">Ir para formulario</a>
+    <div class="main_container">
+        <div><h1>Hello World</h1></div>
+        <div><a th:href="@{/estoque}">Ir para o estoque</a></div>
+        <div><a th:href="@{/estoque/novo}">Ir para formulario</a></div>
+    </div>
 </body>
 </html>
