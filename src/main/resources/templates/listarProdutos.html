@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Produtos</title>
+</head>
+<body>
+<h1>Lista de Produtos</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Status</th>
+        <th>Destinação</th>
+        <th>Rentabilidade</th>
+        <th>Prazo</th>
+        <th>Taxa Administrativa</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Loop through each product in the model attribute 'produtos' -->
+    <tr th:each="produto : ${produtos}">
+        <td th:text="${produto.nome}"></td>
+        <td th:text="${produto.status ? 'Ativo' : 'Inativo'}"></td>
+        <td th:text="${produto.destinacao}"></td>
+        <td th:text="${produto.rentabilidade}"></td>
+        <td th:text="${produto.prazo}"></td>
+        <td th:text="${produto.taxAdmin}"></td>
+        <td>
+            <a th:href="@{/estoque/{id}/editar(id=${produto.id})}">Editar</a>
+            <a th:href="@{/estoque/{id}/excluir(id=${produto.id})}" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Link to create a new product -->
+<a th:href="@{/estoque/novo}" class="btn btn-primary">Novo Produto</a>
+</body>
+</html>

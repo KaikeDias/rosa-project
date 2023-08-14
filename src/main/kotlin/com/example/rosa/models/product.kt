@@ -1,5 +1,31 @@
 package com.example.rosa.models
 
-class Produto(val nome: String, val status: Boolean, val destinacao: String,
-              val rentabilidade: Int, val prazo: Int, val taxAdmin: Int) {
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.Table
+
+@Entity
+data class Produto(
+        @Column(nullable = false)
+        val nome: String,
+        @Column(nullable = false)
+              val status: ProdutoStatus,
+        @Column(nullable = false)
+              val destinacao: String,
+        @Column(nullable = false)
+              val rentabilidade: Int,
+        @Column(nullable = false)
+              val prazo: Int,
+        @Column(nullable = false)
+              val taxAdmin: Int) {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null
+}
+
+enum class ProdutoStatus {
+    available,
+    unavailable
 }
