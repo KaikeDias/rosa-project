@@ -16,6 +16,7 @@
         <th>Rentabilidade</th>
         <th>Prazo</th>
         <th>Taxa Administrativa</th>
+        <th>Ações</th>
     </tr>
     </thead>
     <tbody>
@@ -27,6 +28,16 @@
         <td th:text="${produto.rentabilidade}"></td>
         <td th:text="${produto.prazo}"></td>
         <td th:text="${produto.taxAdmin}"></td>
+        <td>
+            <form th:action="@{/estoque/delete/{id}(id=${produto.id})}" method="post">
+                <button type="submit">Deletar</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{estoque/alterar-status/{id}(id=${produto.id})}" method="post">
+                <button type="submit" class="btn-alterar-status">Alterar Status</button>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>

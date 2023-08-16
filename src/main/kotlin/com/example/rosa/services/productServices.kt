@@ -22,29 +22,31 @@ class produtoService(private val produtoRepository: ProdutoRepository) {
         return produtoRepository.save(produto)
     }
 
-//    fun buscarProdutoPorId(id: Long): Produto? {
-//        val produto: Produto? = produtoRepository.findByIdOrNull(id)
-//        return produto
-//    }
+    fun buscarProdutoPorId(id: Long): Produto? {
+        val produto = produtoRepository.findById(id)
+                .orElseThrow { NoSuchElementException("Produto não encontrado com ID: $id") }
+        return produto
+    }
 
     fun listarProdutos(): List<Produto> {
         return produtoRepository.findAll()
     }
 
-//    fun alterarStatus(id: Long) {
-//        val produtoAntigo = buscarProdutoPorId(id)
-//
-//        if(produtoAntigo != null) {
-//            val novoStatus = !produtoAntigo.status
-//            val produtoAlterado = produtoAntigo.copy(status = novoStatus)
-//            produtoRepository.save(produtoAlterado)
-//        }
-//
-//    }
+    fun alterarStatusProduto(id: Long): Produto? {
+        val produto = buscarProdutoPorId(id)
 
-//    fun buscarPorNome(nome: String): Produto? {
-//        val listaProdutos = listarProdutos()
-//    }
+        // Alterna o status
+        produto?.status = if (produto?.status == ProdutoStatus.available) {
+            ProdutoStatus.unavailable
+        } else {
+            ProdutoStatus.available
+        }
+
+        if(produto != null) {
+            return produtoRepository.save(produto)
+        }
+        return null
+    }
 
     fun deletarProduto(id: Long) {
         produtoRepository.deleteById(id)

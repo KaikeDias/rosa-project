@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ModelAttribute
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 
@@ -27,6 +28,20 @@ class EstoqueController(private val produtoService: produtoService) {
    @PostMapping("/estoque/novo")
    fun criarProduto(@ModelAttribute produtoDTO: ProdutoDTO): String {
        val produto = produtoService.salvarProduto(produtoDTO)
+
+       return "redirect:/estoque"
+   }
+
+   @PostMapping("/estoque/delete/{id}")
+   fun deletarProduto(@PathVariable id: Long): String {
+        produtoService.deletarProduto(id)
+
+       return "redirect:/estoque"
+   }
+
+   @PostMapping("estoque/alterar-status/{id}")
+   fun alterarStatus(@PathVariable id: Long): String {
+       produtoService.alterarStatusProduto(id)
 
        return "redirect:/estoque"
    }

@@ -51,3 +51,33 @@ a.btn {
 a.btn:hover {
     background-color: #0056b3;
 }
+
+/* Estilos para o botão de deletar */
+button[type="submit"] {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #c82333;
+}
+
+/* Estilos para o botão de alterar status */
+button[type="submit"].btn-alterar-status {
+    padding: 5px 10px;
+    background-color: #ffc107;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"].btn-alterar-status:hover {
+    background-color: #e0a800;
+}

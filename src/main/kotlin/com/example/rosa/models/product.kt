@@ -12,7 +12,7 @@ data class Produto(
         @Column(nullable = false)
         val nome: String,
         @Column(nullable = false)
-              val status: ProdutoStatus,
+              var status: ProdutoStatus,
         @Column(nullable = false)
               val destinacao: String,
         @Column(nullable = false)
