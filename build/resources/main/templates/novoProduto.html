@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <title>Novo Produto</title>
+    <link rel="stylesheet" href="/form.css">
+</head>
+<body>
+<h1>Novo Produto</h1>
+
+<form th:action="@{/estoque/novo}" method="post" th:object="${produtoDTO}">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" th:field="*{nome}" required><br>
+
+    <label for="destinacao">Destinação:</label>
+    <input type="text" id="destinacao" th:field="*{destinacao}" required><br>
+
+    <label for="rentabilidade">Rentabilidade:</label>
+    <input type="number" id="rentabilidade" th:field="*{rentabilidade}" required><br>
+
+    <label for="prazo">Prazo:</label>
+    <input type="number" id="prazo" th:field="*{prazo}" required><br>
+
+    <label for="taxAdmin">Taxa Administrativa:</label>
+    <input type="number" id="taxAdmin" th:field="*{taxAdmin}" required><br>
+
+    <button type="submit">Salvar</button>
+</form>
+
+
+<!-- Link para voltar à lista de produtos -->
+<a th:href="@{/estoque}" class="btn btn-secondary">Voltar</a>
+</body>
+</html>
