@@ -27,7 +27,7 @@ class EstoqueController(private val produtoService: produtoService) {
 
    @PostMapping("/estoque/novo")
    fun criarProduto(@ModelAttribute produtoDTO: ProdutoDTO): String {
-       val produto = produtoService.salvarProduto(produtoDTO)
+       produtoService.salvarProduto(produtoDTO)
 
        return "redirect:/estoque"
    }
