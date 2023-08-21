@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import java.util.Date
 
 @Entity
 data class Produto(
@@ -20,7 +21,9 @@ data class Produto(
         @Column(nullable = false)
               val prazo: Int,
         @Column(nullable = false)
-              val taxAdmin: Int) {
+              val taxAdmin: Int,
+        @Column(nullable = false)
+              val vencimento: Int) {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
 }

@@ -16,7 +16,8 @@ class produtoService(private val produtoRepository: ProdutoRepository) {
                 destinacao = produtoDTO.destinacao!!,
                 rentabilidade = produtoDTO.rentabilidade!!,
                 prazo = produtoDTO.prazo!!,
-                taxAdmin = produtoDTO.taxAdmin!!
+                taxAdmin = produtoDTO.taxAdmin!!,
+                vencimento = produtoDTO.vencimento!!
         )
 
         return produtoRepository.save(produto)
