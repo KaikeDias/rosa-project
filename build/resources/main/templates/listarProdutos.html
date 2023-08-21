@@ -16,6 +16,7 @@
         <th>Rentabilidade</th>
         <th>Prazo</th>
         <th>Taxa Administrativa</th>
+        <th>Vencimento</th>
         <th>Ações</th>
     </tr>
     </thead>
@@ -25,9 +26,10 @@
         <td th:text="${produto.nome}"></td>
         <td th:text="${produto.status}"></td>
         <td th:text="${produto.destinacao}"></td>
-        <td th:text="${produto.rentabilidade}"></td>
-        <td th:text="${produto.prazo}"></td>
-        <td th:text="${produto.taxAdmin}"></td>
+        <td th:text="${#strings.concat(produto.rentabilidade, ' %')}"></td>
+        <td th:text="${#strings.concat(produto.prazo, ' meses')}"></td>
+        <td th:text="${#strings.concat(produto.taxAdmin, ' %')}"></td>
+        <td th:text="${#strings.concat(produto.vencimento, ' meses')}"></td>
         <td>
             <form th:action="@{/estoque/delete/{id}(id=${produto.id})}" method="post">
                 <button type="submit">Deletar</button>
