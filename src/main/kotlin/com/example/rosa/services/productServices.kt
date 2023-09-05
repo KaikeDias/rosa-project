@@ -1,5 +1,6 @@
 package com.example.rosa.services
 
+import com.example.rosa.exceptions.ProdutoNaoEncontradoException
 import com.example.rosa.models.Produto
 import com.example.rosa.models.ProdutoDTO
 import com.example.rosa.models.ProdutoStatus
@@ -8,7 +9,7 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
-class produtoService(private val produtoRepository: ProdutoRepository) {
+class ProdutoService(private val produtoRepository: ProdutoRepository) {
     fun salvarProduto(produtoDTO: ProdutoDTO): Produto {
         val produto = Produto(
                 nome = produtoDTO.nome!!,
@@ -17,7 +18,8 @@ class produtoService(private val produtoRepository: ProdutoRepository) {
                 rentabilidade = produtoDTO.rentabilidade!!,
                 prazo = produtoDTO.prazo!!,
                 taxAdmin = produtoDTO.taxAdmin!!,
-                vencimento = produtoDTO.vencimento!!
+                vencimento = produtoDTO.vencimento!!,
+                liquidezDiaria = produtoDTO.liquidezDiaria!!
         )
 
         return produtoRepository.save(produto)
@@ -33,7 +35,7 @@ class produtoService(private val produtoRepository: ProdutoRepository) {
         return produtoRepository.findAll()
     }
 
-    fun alterarStatusProduto(id: Long): Produto? {
+    fun alterarStatusProduto(id: Long): Produto {
         val produto = buscarProdutoPorId(id)
 
         // Alterna o status
@@ -43,13 +45,19 @@ class produtoService(private val produtoRepository: ProdutoRepository) {
             ProdutoStatus.available
         }
 
-        if(produto != null) {
+        if(produto == null) {
+            throw ProdutoNaoEncontradoException("Produto com ID $id não encontrado")
+        }else {
             return produtoRepository.save(produto)
         }
-        return null
     }
 
     fun deletarProduto(id: Long) {
-        produtoRepository.deleteById(id)
+        val produtoDeletado = produtoRepository.findById(id)
+        if(produtoDeletado.isEmpty) {
+            throw ProdutoNaoEncontradoException("Produto com ID $id não encontrado")
+        } else {
+            produtoRepository.deleteById(id)
+        }
     }
 }
