@@ -23,7 +23,9 @@ data class Produto(
         @Column(nullable = false)
               val taxAdmin: Int,
         @Column(nullable = false)
-              val vencimento: Int) {
+              val vencimento: Int,
+        @Column(nullable = false)
+              val liquidezDiaria: Boolean) {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
 }
