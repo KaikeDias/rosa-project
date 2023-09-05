@@ -1,7 +1,7 @@
 package com.example.rosa.controllers
 import com.example.rosa.models.Produto
 import com.example.rosa.models.ProdutoDTO
-import com.example.rosa.services.produtoService
+import com.example.rosa.services.ProdutoService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 
 @Controller
-class EstoqueController(private val produtoService: produtoService) {
+class EstoqueController(private val produtoService: ProdutoService) {
     @GetMapping("/estoque")
     fun listarEstoque(model: Model): String {
         val listaProdutos: List<Produto> = produtoService.listarProdutos()
